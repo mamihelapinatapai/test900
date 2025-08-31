@@ -1,0 +1,49 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+	"manifest_version": 3,
+	"name": "WAXP - Contacts Exporter for WhatsApp",
+	"description": "Export all or unsaved contacts from WhatsApp™ groups, chatlist and labels to CSV file.",
+	"homepage_url": "https://codegena.com/WhatsApp-Contacts-Exporter/",
+	"version": "2.4.2",
+	"background": {
+		"service_worker": "background.bundle.js"
+	},
+	"permissions": [
+		"tabs",
+		"storage"
+	],
+	"action": {
+		"default_popup": "popup.html",
+		"default_icon": "assets/img/icon@128x128.png"
+	},
+	"icons": {
+		"128": "assets/img/icon@128x128.png"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://web.whatsapp.com/*"
+			],
+			"js": [
+				"contentScript.bundle.js"
+			]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"assets/*",
+				"client.bundle.js"
+			],
+			"matches": [
+				"<all_urls>"
+			]
+		}
+	],
+	"externally_connectable": {
+		"matches": [
+			"*://web.whatsapp.com/"
+		]
+	}
+}
